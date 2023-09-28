@@ -1,0 +1,34 @@
+Funções e métodos ultilizados no pandas
+
+Assumindo que eu tenho uma base de dados "dados.csv" e vou analizá-los
+
+tabela =  pandas.read_csv("dados.csv") - ler formatos de arquivos
+
+mostrar a tabela tabulada no jupyter - display(tabela)
+
+Eliminar uma coluna da base de dados - tabela.drop(columns="nome da coluna")
+
+Eliminar valores vazios da base de dados - tabela.dropna()
+
+Pegar informações da planilha - display(tabela.info())
+
+Visualisar uma coluna em específico na base - display(tabela["nome da coluna"].value_counts()) -- trás informa;óes somente daquela coluna passada
+
+Visualisar, naquela coluna em específico, os valores percentuais referentes - display(tabela["nome da tabela"].value_counts(normalize=True))
+    onde: normalize é valor / total
+
+Visualisar, naquela coluna em específico, os valores percentuais referentes com os símbolo de porcentagem - display(tabela["nome da tabela"].value_counts(normalize=True).map("{:.1%}".format))
+    onde: :indica que é uma formatação; . separador; 1 némero de casas decimais após o ponto; % símbolo depois do valor; 
+
+Agrupar valores para analisar valor em específicos com base naquela coluna -- agrupamento = tabela.groupby("duracao_contrato").mean(numeric_only=True)
+display(agrupamento)
+    onde: groupby("nome da coluna") agrupar pela coluna especificada; .mean(numeric_only=True) agrupar pela média dos valores somente pelos valores numéricos;
+
+==========================================================================================
+import plotly.express as px - importando o módulo plotly e uma de suas funções para criar gráficos
+
+O gráfico geralmente é feito em duas etapas
+1 - Crie o gráfico
+2 - mostre o gráfico
+grafico = px.histogram(tabela, x="idade", color="cancelou") - px.histogram nome do gráfico; tabela minha tabela; x="no eixo x tera os valores da coluna idade"; color="cancelou" cor na coluna cancelou
+grafico.show() - mostra o gráfico
